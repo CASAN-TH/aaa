@@ -24,6 +24,13 @@ export class AuthService {
       .post(`${this.config.apiUrl}/api/auth/signin`, body)
       .toPromise();
   }
+
+  register(body: any){
+    return this.http
+      .post(`${this.config.apiUrl}/api/auth/signup`, body)
+      .toPromise();
+  }
+
   onSuccess(token:any){
     window.localStorage.setItem(`token@${this.config.appName}-${this.config.environment}`, token);
 

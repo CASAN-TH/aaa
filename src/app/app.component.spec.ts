@@ -2,9 +2,15 @@ import { AuthModule } from './../../projects/auth/src/lib/auth.module';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 describe('AppComponent', () => {
+  const config = {
+    production: false,
+    environment: "dev",
+    appName: "schoolhub",
+    apiUrl: "http://localhost:3000"
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AuthModule],
+      imports: [AuthModule.forRoot(config)],
       declarations: [
         AppComponent
       ],
@@ -19,11 +25,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('aaa');
-  }));
-  xit('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to aaa!');
   }));
 });
