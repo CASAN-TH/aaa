@@ -126,7 +126,7 @@
       "root": "projects/auth",
       "sourceRoot": "projects/auth/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "auth",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

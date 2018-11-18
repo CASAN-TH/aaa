@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -85,14 +86,28 @@ export class AuthLoginComponent implements OnInit {
     username: "",
     password: ""
   };
-  constructor() {}
+  constructor(private authService: AuthService) {
+    this.authService.isLoggedIn.subscribe(value => {
+      console.log(this.authService.user);
+    });
+  }
 
   ngOnInit() {}
 
-  onLogin() {
-    this.credential = {
-      username: "",
-      password: ""
-    };
+  async onLogin() {
+    try {
+      const resp:any = await this.authService.login(this.credential);
+    if(resp){
+      this.authService.onSuccess(resp.token);
+      this.credential = {
+        username: "",
+        password: ""
+      };
+    }
+    } catch (error) {
+      // throw error;
+    }
+    
+    
   }
 }
