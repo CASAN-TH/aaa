@@ -11,7 +11,9 @@ export class AuthService {
   jwt: JwtHelperService = new JwtHelperService();
   token:any;
   user:any;
+  @Output() isLoggingIn: EventEmitter<any> = new EventEmitter();
   @Output() isLoggedIn: EventEmitter<any> = new EventEmitter();
+  @Output() isLoggedFail: EventEmitter<any> = new EventEmitter();
   constructor(
     @Inject(AuthConfigService) private config: any,
     private http: HttpClient
@@ -20,12 +22,14 @@ export class AuthService {
   }
 
   login(body: any){
+    this.isLoggingIn.emit();
     return this.http
       .post(`${this.config.apiUrl}/api/auth/signin`, body)
       .toPromise();
   }
 
   register(body: any){
+    this.isLoggingIn.emit();
     return this.http
       .post(`${this.config.apiUrl}/api/auth/signup`, body)
       .toPromise();
@@ -37,6 +41,10 @@ export class AuthService {
     this.token = window.localStorage.getItem(`token@${this.config.appName}-${this.config.environment}`);
     this.user = this.token ? this.jwt.decodeToken(this.token) : null;
     this.isLoggedIn.emit(this.user);
+  }
+
+  onFail(msg:any){
+    this.isLoggedFail.emit(msg);
   }
 
   logout(){

@@ -188,6 +188,7 @@ export class AuthRegisterComponent implements OnInit {
       }
     } catch (error) {
       //throw error;
+      this.authService.onFail(error);
     }
   }
 
