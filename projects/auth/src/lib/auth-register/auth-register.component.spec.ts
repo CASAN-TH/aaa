@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
+import {RouterTestingModule} from "@angular/router/testing";
 import { AuthRegisterComponent } from "./auth-register.component";
 import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -21,6 +21,7 @@ describe("AuthRegisterComponent", () => {
       imports: [
         BrowserAnimationsModule,
         FormsModule,
+        RouterTestingModule,
         ReactiveFormsModule.withConfig({
           warnOnNgModelWithFormControl: "never"
         }),

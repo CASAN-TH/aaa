@@ -6,7 +6,7 @@ import {
 import { AuthLoginComponent } from "./auth-login.component";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
+import {RouterTestingModule} from "@angular/router/testing";
 import {
   MatCheckboxModule,
   MatIconModule,
@@ -24,6 +24,7 @@ describe("AuthComponent", () => {
       imports: [
         BrowserAnimationsModule,
         FormsModule,
+        RouterTestingModule,
         MatCheckboxModule,
         MatIconModule,
         MatInputModule,
@@ -40,7 +41,7 @@ describe("AuthComponent", () => {
     component = fixture.componentInstance;
     usernameEl = fixture.nativeElement.querySelector("input[name=username]");
     passwordEl = fixture.nativeElement.querySelector("input[name=password]");
-    loginButtonEl = fixture.nativeElement.querySelector("button");
+    loginButtonEl = fixture.nativeElement.querySelector("button[name=btn-login]");
     fixture.detectChanges();
   }));
 

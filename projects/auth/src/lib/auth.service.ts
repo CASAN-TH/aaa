@@ -38,4 +38,11 @@ export class AuthService {
     this.user = this.token ? this.jwt.decodeToken(this.token) : null;
     this.isLoggedIn.emit(this.user);
   }
+
+  logout(){
+    window.localStorage.removeItem(`token@${this.config.appName}-${this.config.environment}`);
+    this.token = window.localStorage.getItem(`token@${this.config.appName}-${this.config.environment}`);
+    this.user = this.token ? this.jwt.decodeToken(this.token) : null;
+    this.isLoggedIn.emit(this.user);
+  }
 }

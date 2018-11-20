@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "auth-register",
@@ -124,20 +125,27 @@ import { AuthService } from "../auth.service";
       <mat-card-actions>
         <p class="register">
           มีบัญชีอยู่แล้ว?
-          <span class="btn primary" routerLink="/login">เข้าสู่ระบบ</span>
+          <button
+            name="btn-login"
+            mat-button
+            class="full-width"
+            (click)="gotoLogin()"
+          >
+            เข้าสู่ระบบ
+          </button>
         </p>
       </mat-card-actions>
     </mat-card>
   `,
   styles: [
     `
-    .register-form {
-    width: 100%;
-  }
-  .full-width {
-    width: 100%;
-  }
-  `
+      .register-form {
+        width: 100%;
+      }
+      .full-width {
+        width: 100%;
+      }
+    `
   ]
 })
 export class AuthRegisterComponent implements OnInit {
@@ -148,6 +156,7 @@ export class AuthRegisterComponent implements OnInit {
   accountFormGroup: FormGroup;
   profileFormGroup: FormGroup;
   constructor(
+    private router: Router,
     private authService: AuthService,
     private formBuilder: FormBuilder
   ) {
@@ -177,5 +186,9 @@ export class AuthRegisterComponent implements OnInit {
     } catch (error) {
       //throw error;
     }
+  }
+
+  gotoLogin() {
+    this.router.navigate(["/login"]);
   }
 }

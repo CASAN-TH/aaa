@@ -1,6 +1,7 @@
 import { AuthModule } from './../../projects/auth/src/lib/auth.module';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {RouterTestingModule} from "@angular/router/testing";
 describe('AppComponent', () => {
   const config = {
     production: false,
@@ -10,7 +11,7 @@ describe('AppComponent', () => {
   };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AuthModule.forRoot(config)],
+      imports: [AuthModule.forRoot(config), RouterTestingModule],
       declarations: [
         AppComponent
       ],

@@ -1,5 +1,6 @@
-import { AuthService } from './../auth.service';
+import { AuthService } from "./../auth.service";
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "auth-login",
@@ -38,23 +39,30 @@ import { Component, OnInit } from "@angular/core";
           <div class="row">
             <div class="col-6"><mat-checkbox>จดจำฉันไว้</mat-checkbox></div>
             <div class="col-6 text-right">
-              <a routerLink="/forgot">ลืมรหัสผ่าน</a>
+              <button
+                name="btn-forgot"
+                mat-button
+                (click)="gotoForgot()">ลืมรหัสผ่าน</button>
             </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
           <button
+            name="btn-login"
             mat-flat-button
             color="primary"
             class="full-width"
             (click)="onLogin()"
-            [disabled]="!credential.username || !credential.password"
-          >
+            [disabled]="!credential.username || !credential.password">
             เข้าสู่ระบบ
           </button>
           <div class="row pt-2">
             <div class="col-12 text-center">
-              <a name="register" routerLink="/register">ลงทะเบียน</a>
+              <button
+                name="btn-register"
+                mat-button
+                class="full-width"
+                (click)="gotoRegister()">ลงทะเบียน</button>
             </div>
           </div>
         </mat-card-actions>
@@ -86,7 +94,7 @@ export class AuthLoginComponent implements OnInit {
     username: "",
     password: ""
   };
-  constructor(private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
     this.authService.isLoggedIn.subscribe(value => {
       console.log(this.authService.user);
     });
@@ -96,18 +104,24 @@ export class AuthLoginComponent implements OnInit {
 
   async onLogin() {
     try {
-      const resp:any = await this.authService.login(this.credential);
-    if(resp){
-      this.authService.onSuccess(resp.token);
-      this.credential = {
-        username: "",
-        password: ""
-      };
-    }
+      const resp: any = await this.authService.login(this.credential);
+      if (resp) {
+        this.authService.onSuccess(resp.token);
+        this.credential = {
+          username: "",
+          password: ""
+        };
+      }
     } catch (error) {
       // throw error;
     }
-    
-    
+  }
+
+  gotoRegister() {
+    this.router.navigate(["/register"]);
+  }
+
+  gotoForgot() {
+    this.router.navigate(["/forgot"]);
   }
 }
