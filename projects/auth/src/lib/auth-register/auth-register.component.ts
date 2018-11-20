@@ -57,6 +57,7 @@ import { Router } from "@angular/router";
               </div>
               <div>
                 <button
+                  name="btn-next"
                   mat-flat-button
                   color="primary"
                   class="full-width"
@@ -99,6 +100,7 @@ import { Router } from "@angular/router";
               <div class="row">
                 <div class="col-6">
                   <button
+                    name="btn-prev"
                     mat-stroked-button
                     class="full-width"
                     matStepperPrevious
@@ -108,6 +110,7 @@ import { Router } from "@angular/router";
                 </div>
                 <div class="col-6">
                   <button
+                    name="btn-register" 
                     mat-flat-button
                     color="primary"
                     class="full-width"
