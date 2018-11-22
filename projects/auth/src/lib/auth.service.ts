@@ -18,7 +18,8 @@ export class AuthService {
     @Inject(AuthConfigService) private config: any,
     private http: HttpClient
   ) {
-    // console.log(config);
+    this.token = window.localStorage.getItem(`token@${this.config.appName}-${this.config.environment}`);
+    this.user = this.token ? this.jwt.decodeToken(this.token) : null;
   }
 
   login(body: any){
