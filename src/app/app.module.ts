@@ -15,9 +15,17 @@ import {
   AuthModule
 } from "../../projects/auth/src/lib/auth.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule, Routes } from '@angular/router';
 
 
 const authSrvCfg = environment
+const routes: Routes = [
+  {
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full"
+  }
+];
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +37,7 @@ const authSrvCfg = environment
     MatIconModule,
     MatInputModule,
     MatCardModule,
+    RouterModule.forRoot(routes),
     AuthModule.forRoot(authSrvCfg)
   ],
   providers: [],
