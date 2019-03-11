@@ -22,7 +22,7 @@ import { Router } from "@angular/router";
                     placeholder="ชื่อ"
                     type="text"
                     name="firstname"
-                    [(ngModel)]="credential.firstName"
+                    [(ngModel)]="credential.firstname"
                     formControlName="firstname"
                     required
                   />
@@ -35,7 +35,7 @@ import { Router } from "@angular/router";
                     placeholder="นามสกุล"
                     type="text"
                     name="lastname"
-                    [(ngModel)]="credential.lastName"
+                    [(ngModel)]="credential.lastname"
                     formControlName="lastname"
                     required
                   />
