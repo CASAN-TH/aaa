@@ -39,11 +39,7 @@ import { Router } from "@angular/router";
           <div class="row">
             <div class="col-6"><mat-checkbox>จดจำฉันไว้</mat-checkbox></div>
             <div class="col-6 text-right">
-              <button
-                name="btn-forgot"
-                mat-button
-                (click)="gotoForgot()">ลืมรหัสผ่าน</button>
-            </div>
+                     </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
@@ -85,6 +81,8 @@ import { Router } from "@angular/router";
         width: 100%;
         height: 100%;
       }
+      .mat-card:not([class*=mat-elevation-z]) {
+      box-shadow:none;
     `
   ]
 })
@@ -95,12 +93,13 @@ export class AuthLoginComponent implements OnInit {
     password: ""
   };
   constructor(private router: Router, private authService: AuthService) {
+    this.authService.isLoggedIn.observers = [];
     this.authService.isLoggedIn.subscribe(value => {
       console.log(this.authService.user);
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async onLogin() {
     try {

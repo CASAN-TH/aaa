@@ -141,7 +141,9 @@ import { Router } from "@angular/router";
     </mat-card>
   `,
   styles: [
-    `
+    `.mat-card:not([class*=mat-elevation-z]) {
+      box-shadow:none;
+    }
       .register-form {
         width: 100%;
       }
@@ -163,6 +165,7 @@ export class AuthRegisterComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder
   ) {
+    this.authService.isLoggedIn.observers = [];
     this.authService.isLoggedIn.subscribe(value => {
       console.log(this.authService.user);
     });
