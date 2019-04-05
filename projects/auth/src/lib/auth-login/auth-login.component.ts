@@ -93,7 +93,7 @@ export class AuthLoginComponent implements OnInit {
     password: ""
   };
   constructor(private router: Router, private authService: AuthService) {
-    this.authService.isLoggedIn.observers = [];
+    // this.authService.isLoggedIn.observers = [];
     this.authService.isLoggedIn.subscribe(value => {
       console.log(this.authService.user);
     });

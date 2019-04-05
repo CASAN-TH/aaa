@@ -166,7 +166,7 @@ export class AuthRegisterComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder
   ) {
-    this.authService.isLoggedIn.observers = [];
+    // this.authService.isLoggedIn.observers = [];
     this.authService.isLoggedIn.subscribe(value => {
       console.log(this.authService.user);
     });
