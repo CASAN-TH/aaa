@@ -112,6 +112,7 @@ import { Router } from "@angular/router";
                   <button
                     name="btn-register" 
                     mat-flat-button
+                    [disabled]="!credential.password||!credential.username"
                     color="primary"
                     class="full-width"
                     matStepperNext
@@ -130,7 +131,7 @@ import { Router } from "@angular/router";
           มีบัญชีอยู่แล้ว?
           <button
             name="btn-login"
-            mat-button
+            mat-button 
             class="full-width"
             (click)="gotoLogin()"
           >
